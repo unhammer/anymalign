@@ -28,6 +28,7 @@ import os
 import sys
 import optparse
 from time import time
+import signal
 
 import bz2
 import gzip
@@ -49,9 +50,17 @@ __tmpDir__ = None
 
 MAX_SUBCORPUS_SIZE = 100000
 
+SIG_TERMINATE=False
+
 ###############################################################################
 # Utility functions
 ###############################################################################
+
+
+def handle_signal(signum, _):
+    global SIG_TERMINATE
+    if signum in [signal.SIGINT, signal.SIGTERM]:
+        SIG_TERMINATE=True
 
 def parse_field_numbers(fields, maxFields):
     """Get a set of integers from a command line option.
@@ -998,6 +1007,7 @@ class Aligner:
         -- nbNewAlignments: int
             The "-a" command line argument.
         """
+        global SIG_TERMINATE
         nbLines = len(self.corpus)
         if nbLines > 2: # Speed up by not using subcorpora of size 1 or nbLines
             nextRandomSize = Distribution(
@@ -1026,7 +1036,7 @@ class Aligner:
         tmpFile = make_temp_file(".al")
         try:
             try:
-                while speed > nbNewAlignments:
+                while speed > nbNewAlignments and not SIG_TERMINATE:
                     t = time()
                     if timeout is not None and t - startTime >= timeout:
                         break
@@ -1541,6 +1551,8 @@ format. Possible values are "plain", "moses", "html", and "tmx".
 
 
 if __name__ == '__main__':
+    signal.signal(signal.SIGTERM, handle_signal)
+    signal.signal(signal.SIGINT, handle_signal)
     try:
         import psyco
     except ImportError:
