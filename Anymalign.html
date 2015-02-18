@@ -1,0 +1,766 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
+<head>
+	<title>Anymalign</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" media="all" href="../style.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="../perso.css" />
+</head>
+
+<body>
+	<div id="header">
+		<a href="http://www.greyc.fr/" id="greyc"></a>
+	</div>
+	<div id="main">
+		<ul id="menu">
+			<li><a href="http://perso.limsi.fr/alardill/">&lt;&lt;&nbsp;Back&nbsp;to&nbsp;Adrien's</a></li>
+			<li><a href="#requirements">Requirements</a></li>
+			<li><a href="#download">Download</a></li>
+			<li><a href="#start">Getting&nbsp;started</a></li>
+			<li><a href="#input">Input&nbsp;file&nbsp;format</a></li>
+			<li><a href="#output">Output&nbsp;file&nbsp;format</a></li>
+			<li><a href="#usage">Usage</a></li>
+			<li><a href="#reference">Reference</a></li>
+			<li><a href="#minimalign">Minimalign</a></li>
+		</ul>
+
+		<div id="content">
+
+			<h1>Anymalign</h1>
+			<p>
+			<strong>Anymalign</strong> is a multilingual sub-sentential aligner.
+			It can extract lexical equivalences
+			from sentence-aligned parallel corpora.
+			Its main advantage over other similar tools is that it can align
+			any number of languages simultaneously.
+			</p>
+			<h3>Characteristics:</h3>
+			<ul>
+				<li><strong>Truly multilingual:</strong>
+				any number of languages can be aligned simultaneously.
+				</li>
+				<li><strong>Fast?</strong>
+				Quality of results is not a matter of time,
+				however coverage is. The longer Anymalign runs,
+				the more results. The program can be stopped
+				at any time.
+				</li>
+				<li><strong>Easy to use:</strong>
+				a single command should suffice for most purposes.
+				Still from a command line!
+				</li>
+				<li><strong>Easy to parallelize:</strong>
+				just run the very same command on several
+				machines! Their results can be merged with a single
+				command.
+				</li>
+				<li><strong>Easy to integrate:</strong>
+				simple one-file input and output formats.
+				There is no intermediary step.</li>
+				<li><strong>Portable:</strong>
+				written in the Python programming language,
+				available for most systems.</li>
+				<li><strong>Open source:</strong>
+				released under the terms of the GPL.</li>
+			</ul>
+
+			<p>As an example of actual output,
+			here are the first "few" alignments one can obtain
+			from the <a href="http://wt.jrc.it/lt/Acquis/">JRC-ACQUIS
+			Multilingual Parallel Corpus corpus</a>
+			(22&nbsp;languages) in a few seconds:
+			</p>
+			<ul>
+			<li><a href="https://anymalign.limsi.fr/bg_cs_da_de_el_en_es_et_fi_fr_hu_it_lt_lv_mt_nl_pl_pt_ro_sk_sl_sv.txt">
+			Plain text output format</a>
+			(TSV, tab separated value,
+			can be read in any text editor or spreadsheet);
+			</li>
+			<li><a href="https://anymalign.limsi.fr/bg_cs_da_de_el_en_es_et_fi_fr_hu_it_lt_lv_mt_nl_pl_pt_ro_sk_sl_sv.html">
+			the same file converted in HTML</a>;
+			</li>
+			<li><a href="https://anymalign.limsi.fr/bg_cs_da_de_el_en_es_et_fi_fr_hu_it_lt_lv_mt_nl_pl_pt_ro_sk_sl_sv.xml">the same file converted in TMX (XML)</a>.</li>
+			</ul>
+			<p>Here, discontinuous sequences and long n-grams
+			were filtered out.</p>
+
+			<br/>
+			<p><a href="https://anymalign.limsi.fr/../lexicons/">Examples with the Bible parallel corpus</a> are also available.</p>
+
+
+			<!--======================================================-->
+			<br/><br/><hr id="requirements"/>
+			<!--======================================================-->
+
+			<h2>Requirements</h2>
+			<ul>
+			<li><a href="http://www.python.org/">Python</a>
+			version 2.4 or higher (&lt; 3.0); &nbsp;&nbsp;
+			<img  src="./python.png" alt="Python powered"/></li>
+			<li>a parallel corpus for input.
+			You can find some in the
+			<a href="http://urd.let.rug.nl/tiedeman/OPUS/">OPUS</a>
+			open source parallel corpus for example.
+			Languages which do not separate words by blanks
+			have to be segmented in words.
+			The input corpus does not need to fit into memory (anymore);
+			</li>
+			<li>(optional) for 32 bits architectures.
+			the script will run faster if the
+			<a href="http://psyco.sourceforge.net/">Psyco</a> library
+			is installed as well;</li>
+			<li>(optional) you can run the script simultaneously on
+			several machines to reduce computing time
+			(e.g. 10 times faster with 10 machines).</li>
+			</ul>
+
+			<h3>
+			<img src="./linux.png" alt="Linux/Unix"/>
+			<img src="./mac.png" alt="Mac OS X"/>
+			<img src="./windows.png" alt="Windows"/>
+			</h3>
+
+			<p>This tool was developed on a GNU/Linux box.
+			It is known to work fine also on Mac&nbsp;OS&nbsp;X
+			and Windows, although it was not as heavily tested on the latter.
+			</p>
+
+			<!--======================================================-->
+			<p><a href="#" title="top">^&nbsp;^</a></p><hr id="download"/>
+			<!--======================================================-->
+
+			<h2>Download</h2>
+			<ul>
+				<li><a href="https://anymalign.limsi.fr/latest/anymalign2.5.zip">Latest version is 2.5</a>
+				(May 4th 2011)</li>
+				<li><a href="https://anymalign.limsi.fr/old/">Older versions</a></li>
+				<li><a href="https://anymalign.limsi.fr/README.txt">Readme</a></li>
+			</ul>
+
+			<p>Please acknowledge its use by a citation:</p>
+
+			<blockquote><p>
+			Adrien Lardilleux and Yves Lepage.
+			<cite>Sampling-based multilingual alignment</cite>.
+			International Conference on
+			Recent Advances in Natural Language Processing (RANLP 2009),
+			Borovets, Bulgaria, September 2009.
+			<br/>
+			(<a href="https://anymalign.limsi.fr/../pub/ranlp09-lardilleux.bib">BibTeX</a>)
+			</p></blockquote>
+
+
+			<p>The directory in the zip archive contains three files:</p>
+			<ol>
+				<li><code>anymalign.py</code>: a single Python script to
+				take care of everything;</li>
+				<li><code>README.txt</code>: link to this web page + change log;</li>
+				<li><code>license.txt</code>: the license.</li>
+			</ol>
+
+			<p>
+			This software is released under the terms of the
+			<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public
+			License</a>. &nbsp;&nbsp;
+			<img src="./gpl.png" alt="GPL"/>
+			</p>
+			<p>
+			All forms of contribution are highly appreciated.
+			Please send suggestions, questions, remarks, bugs, insults, beers,
+			to <a href="http://perso.limsi.fr/alardill/">the author</a>.
+			</p>
+
+
+			<!--======================================================-->
+			<p><a href="#" title="top">^&nbsp;^</a></p><hr id="start"/>
+			<!--======================================================-->
+
+			<h2>Getting started</h2>
+
+			<p>The file <code>anymalign.py</code> has no dependency,
+			so you can just extract it from the above archive
+			and start using it.
+			</p>
+
+			<h3>Under Windows</h3>
+			<p>Make sure the Python executable is in your
+			<code>%PATH%</code> environment variable
+			(instructions for this can be found on
+			<a href="http://docs.python.org/using/windows.html#configuring-python">
+			this page</a>, up to section <em>"Finding the Python executable"</em>).
+			You should then be able to execute the script with the command:
+			</p>
+			<pre>$ python&nbsp;anymalign.py -h</pre>
+			<p>assuming the script is in the current directory
+			(this command just displays help; "$" is the prompt).
+			</p>
+
+			<h3>Under Unix</h3>
+			<p>The Python executable should be in your $PATH environment
+			variable already, so the same as above should work just fine:
+			</p>
+			<pre>$ python&nbsp;anymalign.py -h</pre>
+			<p>assuming the script is in the current directory
+			(this command just displays help; "$" is the prompt).
+			If you don't want to bother with the python call,
+			you can copy the script to some convenient location
+			in your <code>$PATH</code>, like <code>$HOME/bin/</code>,
+			and make the script executable:
+			</p>
+			<pre>$ chmod +x anymalign.py</pre>
+
+			<p>
+			You should then be able to call the script just by typing its name:
+			</p>
+			<pre>$ anymalign.py -h</pre>
+
+			<!--======================================================-->
+			<p><a href="#" title="top">^&nbsp;^</a></p><hr id="input"/>
+			<!--======================================================-->
+
+
+			<h2>Input file format</h2>
+
+			<p><code>anymalign.py</code> can read input data
+			in separate files, where each file may contain one or more languages.
+			Typically, multilingual texts are available in separate files,
+			one file per language, one sentence per line,
+			the corresponding lines being translations
+			(all files have the same number of lines).
+			For instance, you may have a tiny trilingual
+			corpus in English, French, and German,
+			where each file is made of 2 lines:
+			</p>
+<pre>$ head en.txt fr.txt de.txt
+==&gt; en.txt &lt;==
+I need a beer .
+This beer is good .
+
+==&gt; fr.txt &lt;==
+Il me faut une bière .
+C'est une bonne bière .
+
+==&gt; de.txt &lt;==
+Ich muss ein Bier trinken .
+Dieses Bier ist gut .</pre>
+
+			<p>You can also provide multilingual input files.
+			In this case, each line is a tab-separated list
+			of aligned sentence, as one would obtain
+			with the <code>paste</code> Unix command:
+			</p>
+<pre>$ paste en.txt fr.txt de.txt > en_fr_de.txt
+$ cat en_fr_de.txt
+I need a beer . <em>&lt;tab&gt;</em> Il me faut une bière . <em>&lt;tab&gt;</em> Ich muss ein Bier trinken .
+This beer is good . <em>&lt;tab&gt;</em> C'est une bonne bière . <em>&lt;tab&gt;</em> Dieses Bier ist gut .</pre>
+
+			<p>You can basically do whatever you want when specifying
+			input files. The following invocations of <code>anymalign.py</code>
+			are all equivalent:
+			</p>
+<pre>$ python anymalign.py en.txt fr.txt de.txt
+$ python anymalign.py en_fr_de.txt
+$ cat en_fr_de.txt | python anymalign.py
+$ cat fr.txt | python anymalign.py en.txt - de.txt
+$ cat en.txt | python anymalign.py - fr_de.txt</pre>
+
+			<p>The first command should suffice for most purposes though.
+			All positional arguments given after the call to
+			<code>anymalign.py</code> are assumed to be
+			(possibly multilingual) input files. They must all have
+			the same number of lines. If no file is given,
+			standard input is read. Standard input can be explicitly
+			specified with a dash (-).
+			</p>
+			<p><code>anymalign.py</code> refers to languages according
+			to their column index, starting from&nbsp;1. In the previous examples,
+			English is language&nbsp;1, French is language&nbsp;2,
+			and German is language&nbsp;3.
+			</p>
+
+
+
+			<!--======================================================-->
+			<p><a href="#" title="top">^&nbsp;^</a></p><hr id="output"/>
+			<!--======================================================-->
+
+			<h2>Output file format</h2>
+
+			<p><code>anymalign.py</code> writes all output to standard output.
+			Output files have basically the same format as the
+			all-languages-in-one input file:
+			each line corresponds to a sub-sentential alignment,
+			and tabulations delimit languages.
+			Thus, language&nbsp;<em>n</em> in the input file
+			corresponds to language&nbsp;<em>n</em> in the output file.</p>
+
+			<p>Three additional fields are appended
+			(as if they were <code>paste</code>d along),
+			so if you have 3&nbsp;input languages,
+			the resulting output file will be made of 6&nbsp;fields
+			(5&nbsp;tabulations/line).</p>
+
+			<p>
+			Alignments are automatically sorted according to the last column.
+			Here is a small sample English-French-German output file
+			(numbers in actual files contain 6 decimals):<br/>
+			(NOTE: this sample output was <b>not</b> obtained from the above input files example, but from larger ones. 2-sentences long input files are not sufficient to produce decent results; the purpose of the above ones is just to illustrate the input format. Please use larger input files.)
+			</p>
+<pre>
+?    <em>&lt;tab&gt;</em> ?     <em>&lt;tab&gt;</em> ?    <em>&lt;tab&gt;</em> 0.99 0.99 0.98 <em>&lt;tab&gt;</em> 0.98 0.99 0.99 <em>&lt;tab&gt;</em> 1759
+beer <em>&lt;tab&gt;</em> bière <em>&lt;tab&gt;</em> Bier <em>&lt;tab&gt;</em> 0.98 0.91 0.86 <em>&lt;tab&gt;</em> 0.95 0.74 0.69 <em>&lt;tab&gt;</em> 132
+the  <em>&lt;tab&gt;</em> la    <em>&lt;tab&gt;</em> der  <em>&lt;tab&gt;</em> 0.23 0.41 0.25 <em>&lt;tab&gt;</em> 0.31 0.42 0.23 <em>&lt;tab&gt;</em> 18
+the  <em>&lt;tab&gt;</em> le    <em>&lt;tab&gt;</em> das  <em>&lt;tab&gt;</em> 0.35 0.36 0.29 <em>&lt;tab&gt;</em> 0.31 0.23 0.25 <em>&lt;tab&gt;</em> 14</pre>
+
+			<p>
+			The meaning of the three additional fields is as follows:
+			</p>
+			<ol>
+				<li>if requested (see
+				<a href="#weight"><code>-w</code> option</a>),
+				the first additional field contains
+				a space-separated list of lexical weights.
+				There are as many weights as there are languages.
+				The <em>n<sup>th</sup></em> weight reflects
+				the probability that all words
+				in the <em>n<sup>th</sup></em> part of the alignment
+				(in language&nbsp;<em>n</em>) have a good translation
+				within the rest of the alignment, at the word level.
+				<br/>
+				If the <code>-w</code> option was not specified,
+				this field only contains a single dash (<code>-</code>);
+				</li>
+				<li>the second additional field contains
+				a space-separated list of translation probabilities.
+				There are as many probabilities as there are languages.
+				The <em>n<sup>th</sup></em> probability is the probability
+				that the <em>n<sup>th</sup></em> part of the alignment
+				(in language&nbsp;<em>n</em>) translates to the rest
+				of the alignment. For bilingual input data,
+				this is just the pair
+				<code><em>p(target|source)&nbsp;p(source|target)</em></code>
+				where <code><em>source</em></code> is language&nbsp;1
+				and <code><em>target</em></code> is language&nbsp;2.
+				For three languages, <code><em>E</em></code>,
+				<code><em>F</em></code>, and <code><em>G</em></code>,
+				it is the triplet
+				<code><em>p(F,G|E)&nbsp;p(E,G|F)&nbsp;p(E,F|G)</em></code>,
+				and so on;
+				</li>
+				<li>the third additional field contains a single integer
+				(an absolute frequency).
+				</li>
+			</ol>
+
+			<p>This plain text output format can be reused
+			by <code>anymalign.py</code>.
+			It can be merged with another output file or
+			translated to another output format.
+			Other available output formats are
+			<a href="http://www.w3.org/html/">HTML</a>,
+			<a href="http://www.lisa.org/standards/tmx/">TMX</a>,
+			and <a href="http://www.statmt.org/moses/">Moses</a>' phrase table
+			(in the latter case,
+			the output file still needs to be <code>sort</code>ed).
+			</p>
+
+			<!--======================================================-->
+			<p><a href="#" title="top">^&nbsp;^</a></p><hr id="usage"/>
+			<!--======================================================-->
+
+			<h2>Usage</h2>
+
+			<p>Basically, all you have to do is to type
+			one of the commands indicated in the
+			<a href="#input">input file format</a> section,
+			the simplest being:
+			</p>
+<pre>$ python anymalign.py en.txt fr.txt de.txt &gt; output.txt</pre>
+			<p>for a 3&nbsp;languages input parallel corpus,
+			the output being redirected to the file
+			<code>output.txt</code>.
+			Once this command is entered,
+			the corpus is loaded.
+			Now just wait for the following message to be displayed:
+			</p>
+<pre>$ python anymalign.py en.txt fr.txt de.txt &gt; output.txt
+[...]
+<strong>Aligning... (ctrl-c to interrupt)</strong></pre>
+			<p>At this stage,
+			the program will run indefinitely
+			until you hit <code>Ctrl-C</code> on the keyboard.
+			The longer the program runs,
+			the more results <code>output.txt</code> will contain.
+			After you hit <code>Ctrl-C</code>,
+			you will get an additional message:
+			</p>
+<pre>$ python anymalign.py en.txt fr.txt de.txt &gt; output.txt
+[...]
+Aligning... (ctrl-c to interrupt)
+[...] <strong>Alignment interrupted! Proceeding...</strong></pre>
+			<p>Just wait a little more,
+			and you will get the prompt back.
+			<br/>
+			That's it.
+			</p>
+
+			<h3>How long do I have to wait?</h3>
+			<p>
+			I don't know.
+			The longer,
+			the more results.
+			However,
+			the longer,
+			the less <em>new</em> results.
+			Hence,
+			it is useless to keep the program running
+			beyond a certain amount of time,
+			which depends on your input corpus.
+			Starting from version 2.5, Anymalign is verbose by default:
+			</p>
+<pre>$ python anymalign.py en.txt fr.txt de.txt &gt; output.txt
+Input corpus: 3 languages, 351548 lines
+Aligning... (ctrl-c to interrupt)
+<strong>30516 alignments, 1795 al/s</strong></pre>
+			<p>The last line displayed is updated every second.
+			It shows the total number of alignments obtained so far
+			(1&nbsp;alignment will become 1&nbsp;line in the output file),
+			as well as the number
+			of new alignments obtained during the last elapsed second.
+			You will also be granted progress information
+			after hitting <code>Ctrl-C</code>.
+			</p>
+			<p>If you want the program to stop automatically
+			when the number of new alignments per seconds is below
+			a certain threshold,
+			see the <a href="#new-alignments"><code>-a</code> option</a>.
+			If you want it to stop after a fixed amount of time,
+			see the <a href="#timeout"><code>-t</code> option</a>.
+			</p>
+
+			<h3>Caveat: using <code>Ctrl-C</code></h3>
+			<ul>
+			<li>If you do not hit <code>Ctrl-C</code>
+			when you are invited to
+			(i.e. when the message is displayed),
+			the program will simply stop without outputting anything
+			(displaying traceback et al.).</li>
+			<li>For Unix pipeliners:
+			keep in mind that the signal sent to the program
+			after hitting <code>Ctrl-C</code>
+			is transmitted to all processes in the pipeline.
+			For instance,
+			if you intend to compress <code>anymalign.py</code>'s output
+			with <code>gzip</code>:
+<pre>$ python anymalign.py en.txt fr.txt de.txt <strong>| gzip</strong> &gt; output.txt.gz
+Aligning... (ctrl-c to interrupt)</pre>
+			and hit <code>Ctrl-C</code>,
+			you will not get any output because <code>gzip</code>
+			receives the signal as well.
+			If you don't want this to happen,
+			you can:
+				<ul>
+				<li>simply run two commands instead of one:
+<pre>$ python anymalign.py en.txt fr.txt de.txt &gt; output.txt
+Aligning... (ctrl-c to interrupt)
+Alignment interrupted! Proceeding...
+$ gzip output.txt
+</pre>
+				</li>
+				<li>use the <a href="#new-alignments"><code>-a</code></a>
+				and/or <a href="#timeout"><code>-t</code></a> option,
+				so that hitting Ctrl-C is not required
+				(the program stops by itself);
+
+				</li>
+				<li>or send the signal to the python interpreter only,
+				through its pid:
+<pre><em># Assuming the program is already running from another terminal</em>
+$ ps a
+<em># I cut off all output except this line</em>
+27286 pts/0 R+ 0:19 /usr/bin/python /home/alardill/bin/anymalign.py en.txt fr.txt de.txt
+$ kill -2 27286
+</pre>
+				</li>
+				</ul>
+			</li>
+			</ul>
+
+
+			<!--======================================================-->
+			<p><a href="#" title="top">^&nbsp;^</a></p><hr id="reference"/>
+			<!--======================================================-->
+
+			<h2>Reference</h2>
+
+			<p>The following is a little more detailed explanation
+			of what the program displays when invoked
+			with the traditional
+			</p>
+<pre>$ python anymalign.py <strong>-h</strong></pre>
+
+			<h3>Usage:</h3>
+
+<pre>python anymalign.py [INPUT_FILE[.gz|.bz2] [...]] >ALIGNMENT_FILE
+python anymalign.py -m [ALIGNMENT_FILES[.gz|.bz2] [...]] >ALIGNMENT_FILE</pre>
+
+			<p><code>INPUT_FILE</code> is a tab-separated list
+			of aligned sentences (1/line):
+			</p>
+<pre>&lt;<em>sentenceNlanguage1</em>&gt; [&lt;<em>TAB</em>&gt; &lt;<em>sentenceNlanguage2</em>&gt; [...]]</pre>
+
+			<p>All <code>INPUT_FILE</code>'s must have the same
+			number of lines.
+			They can be compressed
+			with <code>gzip</code> or <code>bzip2</code>,
+			as long as the filenames bear the appropriate extension.
+			If no <code>INPUT_FILE</code> is specified,
+			standard input is read.
+			Standard input can be explicitely specified with a dash
+			(<code>-</code>)
+			(only one is allowed).
+			</p>
+
+			<p>A generated <code>ALIGNMENT_FILE</code>
+			has the same format as <code>INPUT_FILE</code>
+			(same fields),
+			plus three extra fields at the end of each line:
+			</p>
+			<ol>
+			<li>a space-separated list of lexical weights (1/language);</li>
+			<li>a space-separated list of translation probabilities
+			(1/language);</li>
+			<li>an absolute frequency:</li>
+			</ol>
+<pre>&lt;<em>phraseNlanguage1</em>&gt; [...] &lt;<em>TAB</em>&gt; &lt;<em>lexWeights</em>&gt; &lt;<em>TAB</em>&gt; &lt;<em>probas</em>&gt; &lt;<em>TAB</em>&gt; &lt;<em>frequency</em>&gt;</pre>
+
+			<p>When invoked with the <a href="#merge"><code>-m</code> switch</a>,
+			no alignment is performed.
+			Instead,
+			all positional arguments specified on the command line
+			are expected to be alignment files,
+			as described in the <a href="#output">output file format</a> section.
+			The result is a new alignment file
+			containing the union of all alignments.
+			Absolute frequencies are just summed up,
+			and translation probabilities are updated accordingly.
+			Lexical weights are left unchanged.
+			Input does not need to be sorted:
+			<code>ALIGNMENT_FILES</code> is just the concatenation
+			of several <code>ALIGNMENT_FILE</code>'s.
+			If no file is given,
+			standard input is read.
+			Standard input can be explicitely specified with a dash
+			(<code>-</code>)
+			(only one is allowed).
+			</p>
+
+			<h3>General options</h3>
+
+			<dl>
+
+			<dt>--version</dt>
+			<dd>Show program's version number and exit.</dd>
+
+			<dt>-h, --help</dt>
+			<dd>Show help message and exit.</dd>
+
+			<dt id="merge">-m, --merge</dt>
+			<dd>Do not align. Input files are pre-generated alignment
+                        files (plain text format) to be merged into a single
+                        alignment file. This option is cool because it also makes it
+                        possible to switch between the various output file formats
+                        (see <a href="#output-format">-o option</a>).
+                        For instance, if you want to produce an HTML
+                        output (named, say, <code>align.html</code>) from
+                        a plain text alignment file (say, <code>align.txt</code>) :
+                        <pre>$ python anymalign.py -m -o html align.txt > align.html</pre>
+                        or for short :
+                        <pre>$ python anymalign.py -moh align.txt > align.html</pre>
+
+                        In addition, translation probabilities are updated,
+                        which means you can filter out some part of an alignment file
+                        and still keep up-to-date probabilities. For example :
+<pre>grep "^the cat" align.txt | python anymalign.py -m > alignTheCat.txt</pre>
+			This filters your alignment file so that only lines starting
+			with "the cat" be kept, and recompute probabilities.
+			This is a stupid example, you will certainly have better uses.
+                        <br />
+                        Of course, you can process several alignments files
+                        simultaneously. In any case, input files for the
+                        <code>-m</code> option have to be in plain text format,
+                        so it is generally better to systematically produce alignments
+                        in plain text (default), then to produce a new formatted
+                        alignment file with the -m switch.
+                        </dd>
+
+                        <dt>-T DIR, --temp-dir=DIR</dt>
+                        <dd>(compatible with <code>-m</code>) Where to write temporary files.
+                        Default is OS dependant.</dd>
+
+                        <dt>-v, --verbose</dt>
+                        <dd>(compatible with <code>-m</code>) Show progress information on
+                        standard error.</dd>
+                        </dl>
+
+  			<h3>Options to alter alignment behaviour</h3>
+
+  			<dl>
+
+    			<dt id="new-alignments">-a NB_AL, --new-alignments=NB_AL</dt>
+    			<dd>Stop alignment when number of new alignments per
+                        second is lower than <code>NB_AL</code>. Specify -1 to run
+                        indefinitely. [default: -1]</dd>
+
+			<dt id="index-ngrams">-i INDEX_N, --index_ngrams=INDEX_N</dt>
+			<dd>Consider n-grams up to n=INDEX_N as tokens. Increasing this value
+			increases the number of long n-grams output, but slows the program
+			down and requires more memory. [default: 1]
+			</dd>
+
+                        <dt>-S NB_SENT, --max-sentences=NB_SENT</dt>
+                        <dd>Maximum number of sentences (i.e. input lines) to be
+                        loaded in memory at once. Specify 0 for all-in-memory.
+                        This is useful if you have large amount of input data
+                        to be processed.
+                        [default: 0]</dd>
+
+                        <dt id="timeout">-t NB_SEC, --timeout=NB_SEC</dt>
+                        <dd>Stop alignment after <code>NB_SEC</code> seconds elapsed. Specify
+                        -1 to run indefinitely. [default: -1]</dd>
+
+                        <dt id="weight">-w, --weight</dt>
+                        <dd>Compute lexical weights (requires additional
+                        computation time and memory).
+                        They will replace the dash in the third field of output file.
+                        Lexical weights cannot be computed when
+                        the <a href="#merge"><code>-m</code> switch</a> is given.
+                        </dd>
+
+			</dl>
+
+			<h3>Filtering options</h3>
+
+			<dl>
+
+			<dt>-D FIELDS, --discontiguous-fields=FIELDS</dt>
+                        <dd>Allow discontiguous sequences (like "give up" in "give
+                        it up") in languages at positions specified by <code>FIELDS</code>.
+                        <code>FIELDS</code> is a comma-separated list of integers
+                        (1-based), runs of fields can be specified by a dash
+                        (e.g. <code>"1,3-5"</code>).</dd>
+
+                        <dt>-l NB_LANG, --min-languages=NB_LANG</dt>
+                        <dd>Keep only those alignments that contain words in at
+                        least <code>MIN_LANGUAGES</code> languages (i.e. columns). Default
+                        is to cover all languages.
+                        </dd>
+
+    			<dt>-n MIN_N, --min-ngram=MIN_N</dt>
+    			<dd>Filter out any alignment that contains an N-gram
+                        with N &lt; <code>MIN_N</code>. [default: 1]</dd>
+
+			<dt>-N MAX_N, --max-ngram=MAX_N</dt>
+                        <dd>Filter out any alignment that contains an N-gram
+                        with N &gt; <code>MAX_N</code> (0 for no limit). [default: 0]</dd>
+
+			</dl>
+
+			<h3>Output formatting options</h3>
+
+			<dl>
+
+			<dt>-d DELIM, --delimiter=DELIM</dt>
+                        <dd>Delimiter for discontiguous sequences. This can be any
+                        string. No delimiter is shown by default. Implies <code>-D-</code>
+                        (allow discontinuities in all languages) if <code>-D</code> option
+                        is not specified.</dd>
+
+                        <dt>-e ENCODING, --input-encoding=ENCODING</dt>
+                        <dd>(compatible with <code>-m</code>) Input encoding. This is useful
+                        only for HTML and TMX output formats (see
+                        <a href="#output-format"><code>-o</code> option</a>).
+                        [default: utf-8]</dd>
+
+			<dt>-L LANG, --languages=LANG</dt>
+                        <dd>(compatible with <code>-m</code>) Input languages. LANG is a comma
+                        separated list of language identifiers (e.g.
+                        <code>"en,fr,ar"</code>). This is useful only for HTML (table
+                        headers) and TMX (<code>&lt;xml:lang&gt;</code>)
+                        output formats (see
+                        <a href="#output-format"><code>-o</code> option</a>).</dd>
+
+			<dt id="output-format">-o FORMAT, --output-format=FORMAT</dt>
+                        <dd>(compatible with <code>-m</code>) Output format. Possible values
+                        are <code>"plain"</code>, <code>"moses"</code>,
+                        <code>"html"</code>, and <code>"tmx"</code>.
+                        You can also specify the first letter of the format,
+                        e.g.
+                        <code>"python&nbsp;anymalign.py&nbsp;<strong>-o&nbsp;h</strong>&nbsp;input.txt"</code>
+                        for HTML output. [default: plain]</dd>
+
+                        </dl>
+
+                        <!--======================================================-->
+                        <p><a href="#" title="top">^&nbsp;^</a></p><hr id="minimalign"/>
+			<!--======================================================-->
+
+			<h2>Minimalign</h2>
+
+			<p>Anymalign is quite big,
+			but I want to keep it in a single file to make it simpler to use.
+			As a result,
+			people who want to peek at the source code may find it
+			a bit difficult to read.
+			Yet the first versions (back to malign),
+			which consisted only of the main algorithm,
+			were roughly 100 lines of Python code.
+			The additional 1500+ lines in Anymalign
+			is mainly computing stuff.
+			</p>
+			<p>I therefore propose <em>minimalign</em>,
+			a complete sub-sentential aligner in 100 lines of Python code.
+			It just implements the main alignment algorithm:
+			no option,
+			can only process 2 languages for simplicity,
+			all-in-memory (do not use it with huge corpora),
+			cannot be stopped at any time like Anymalign.
+			But it is much easier to read.
+			</p>
+
+			<p>Download:</p>
+			<ul>
+			<li><a href="./minimalign.py">minimalign.py</a></li>
+			</ul>
+
+			<p>Usage:</p>
+			<pre>$ python minimalign.py source.txt target.txt > alignmentFile.txt</pre>
+			<p>The input corpus
+			has the same format as the one used by Anymalign
+			(see <a href="#input">input file format</a> section),
+			but it must be given in two separate files
+			(<code>source.txt</code> and <code>target.txt</code>
+			in the example above).
+			</p>
+
+			<p>Don't try to use it for real applications
+			since the results may be very limited.
+			It is only provided for didactic purposes.
+			</p>
+
+			<!--======================================================-->
+			<p><a href="#" title="top">^&nbsp;^</a></p>
+
+		</div>
+	</div>
+	<div id="footer">
+		<a href="http://validator.w3.org/check?uri=referer" id="htmlvalid"></a>
+		<a href="http://jigsaw.w3.org/css-validator/check/referer" id="cssvalid"></a>
+		<a href="http://www.unicaen.fr/" id="unicaen"></a>
+		<a href="http://www.ensicaen.fr/" id="ensicaen"></a>
+		<a href="http://www.cnrs.fr/" id="cnrs"></a>
+	</div>
+</body>
+</html>
